@@ -19,10 +19,11 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.h1}>Restricted Access Page</h1>
+      <h1 className={styles.h1}>Bienvenidxs a Noviciado</h1>
       <p className={styles.explain}>
-        Thanks for being a member of our NFT community!
+        Thanks for being a member of our community!
       </p>
+      <div style={{ backgroundColor: '#00FF00', width: '400px', height: '400px', marginBottom: '20px' }}></div>
 
       <button className={styles.mainButton} onClick={logout}>
         Logout
@@ -60,11 +61,11 @@ export async function getServerSideProps(context) {
   const hasNft = await checkBalance(sdk, user.address);
 
   // If they don't have an NFT, redirect them to the login page
-  if (!hasNft) {
+   if (!hasNft) {
     console.log("User", user.address, "doesn't have an NFT! Redirecting...");
     return {
       redirect: {
-        destination: "/login",
+        destination: `/login?missingNft=${true}`,
         permanent: false,
       },
     };
